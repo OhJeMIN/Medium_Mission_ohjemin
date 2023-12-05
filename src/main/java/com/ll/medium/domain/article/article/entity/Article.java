@@ -1,10 +1,12 @@
 package com.ll.medium.domain.article.article.entity;
 
+import com.ll.medium.domain.article.articleComment.entity.ArticleComment;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,4 +23,7 @@ public class Article {
     private String content;
 
     private LocalDateTime createDate;
+
+    @OneToMany(mappedBy = "article" , cascade = CascadeType.REMOVE)
+    private List<ArticleComment> answerList;
 }
