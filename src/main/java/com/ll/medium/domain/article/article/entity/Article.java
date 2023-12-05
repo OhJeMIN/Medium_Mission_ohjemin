@@ -17,10 +17,10 @@ public class Article {
     private Integer id;
 
     @Column(length = 200)
-    private String subject;
+    private String title;
 
     @Column(columnDefinition = "TEXT")
-    private String content;
+    private String body;
 
     private LocalDateTime createDate;
 
