@@ -1,5 +1,6 @@
 package com.ll.medium.global.security;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
@@ -8,6 +9,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     // SecurityFilterChain 타입을 반환하는 메서드입니다. HttpSecurity를 인자로 받습니다.
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorizeRequest -> // 인증 요청에 대한 설정을 합니다.
