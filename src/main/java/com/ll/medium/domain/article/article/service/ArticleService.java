@@ -2,8 +2,10 @@ package com.ll.medium.domain.article.article.service;
 
 import com.ll.medium.domain.article.article.entity.Article;
 import com.ll.medium.domain.article.article.repository.ArticleRepository;
+import com.ll.medium.global.ut.Exception.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +24,7 @@ public class ArticleService {
         if (article.isPresent()) {
             return article.get();
         } else {
-            throw new DataNotFoundException("question not found");
+            throw new DataNotFoundException("Article not found");
         }
     }
 }
