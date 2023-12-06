@@ -26,7 +26,7 @@ public class SecurityConfig {
                 .csrf( // CSRF 보호에 대한 설정을 합니다.
                         csrf ->
                                 csrf.ignoringRequestMatchers( // CSRF 보호를 무시할 요청 매칭 패턴을 설정합니다.
-                                        "/h2/console/**" // "/h2/console/**" 패턴의 요청은 CSRF 보호를 무시합니다.
+                                        "/h2-console/**" // "/h2/console/**" 패턴의 요청은 CSRF 보호를 무시합니다.
                                 )
                 );
 
