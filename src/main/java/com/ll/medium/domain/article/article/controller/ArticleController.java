@@ -24,6 +24,8 @@ public class ArticleController {
 
     @GetMapping(value = "/article/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id) {
+        Article article = articleService.getArticle(id);
+        model.addAttribute("article", article);
         return "domain/article/article/detail";
     }
 }
