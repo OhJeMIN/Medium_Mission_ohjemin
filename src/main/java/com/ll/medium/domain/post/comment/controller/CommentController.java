@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@RequestMapping("/articleComment")
+@RequestMapping("/comment")
 @RequiredArgsConstructor
 @Controller
 public class CommentController {
@@ -20,8 +20,8 @@ public class CommentController {
 
     @PostMapping("/write/{id}")
     public String writeAnswer(Model model, @PathVariable("id") Integer id, @RequestParam(value="content") String content) {
-        Post article = this.articleService.getPost(id);
-        commentService.create(article, content);
-        return String.format("redirect:/article/detail/%s", id);
+        Post post = this.articleService.getPost(id);
+        commentService.create(post, content);
+        return String.format("redirect:/post/%s", id);
     }
 }
