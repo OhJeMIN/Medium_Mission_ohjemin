@@ -1,6 +1,6 @@
-package com.ll.medium.domain.article.articleComment.entity;
+package com.ll.medium.domain.post.comment.entity;
 
-import com.ll.medium.domain.article.article.entity.Article;
+import com.ll.medium.domain.post.post.entity.Post;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-public class ArticleComment {
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -22,5 +22,5 @@ public class ArticleComment {
     private LocalDateTime createDate;
 
     @ManyToOne
-    private Article article;
+    private Post post;
 }

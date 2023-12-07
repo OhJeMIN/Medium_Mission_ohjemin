@@ -1,6 +1,6 @@
-package com.ll.medium.domain.article.article.entity;
+package com.ll.medium.domain.post.post.entity;
 
-import com.ll.medium.domain.article.articleComment.entity.ArticleComment;
+import com.ll.medium.domain.post.comment.entity.Comment;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Article {
+public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -24,6 +24,6 @@ public class Article {
 
     private LocalDateTime createDate;
 
-    @OneToMany(mappedBy = "article" , cascade = CascadeType.REMOVE)
-    private List<ArticleComment> answerList;
+    @OneToMany(mappedBy = "post" , cascade = CascadeType.REMOVE)
+    private List<Comment> commentList;
 }
