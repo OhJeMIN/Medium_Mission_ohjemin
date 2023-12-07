@@ -22,6 +22,6 @@ public class ArticleCommentController {
     public String createAnswer(Model model, @PathVariable("id") Integer id, @RequestParam(value="content") String content) {
         Article article = this.articleService.getArticle(id);
         articleCommentService.create(article, content);
-        return String.format("redirect:domain/article/article/detail/%s", id);
+        return String.format("redirect:/article/detail/%s", id);
     }
 }
