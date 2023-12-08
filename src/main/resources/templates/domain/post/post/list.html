@@ -1,7 +1,7 @@
 <html layout:decorate="~{domain/global/layout}">
 
-<div layout:fragment="content" class="p-2">
-    <table>
+<div layout:fragment="content" class="overflow-x-auto" >
+    <table class="table">
         <thead>
         <tr>
             <th>제목</th>
@@ -17,5 +17,6 @@
         </tr>
         </tbody>
     </table>
+    <a th:href="@{/question/create}" class="mt-5 btn btn-primary">질문 등록하기</a>
 </div>
 </html>
