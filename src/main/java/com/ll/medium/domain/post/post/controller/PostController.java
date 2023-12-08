@@ -5,9 +5,7 @@ import com.ll.medium.domain.post.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +27,16 @@ public class PostController {
         Post post = postService.getPost(id);
         model.addAttribute("post", post);
         return "domain/post/post/detail";
+    }
+
+    @GetMapping("/write")
+    public String getWrite() {
+        return "domain/post/post/write";
+    }
+
+    @PostMapping("/write")
+    public String postWrite(@RequestParam(value="title") String title, @RequestParam(value="body") String body) {
+        // TODO 질문을 저장한다.
+        return "redirect:domain/post/post/list";
     }
 }
