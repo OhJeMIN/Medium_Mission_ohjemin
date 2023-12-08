@@ -1,15 +1,23 @@
-<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
-<h1 th:text="${post.title}"></h1>
-<div th:text="${post.body}"></div>
+<html layout:decorate="~{domain/global/layout}">
 
-<h5 th:text="|${#lists.size(post.commentList)}개의 답변이 있습니다.|"></h5>
-<div>
-    <ul>
-        <li th:each="comment : ${post.commentList}" th:text="${comment.content}"></li>
-    </ul>
+<div layout:fragment="content" class="p-2">
+    <h1 class="font-bold text-center mb-2"><i class="fa-regular fa-newspaper"></i> 글 내용</h1>
+
+    <div class="mt-2">
+        <div class="badge badge-outline" th:text="${post.id}">default</div>
+        <span th:text="${post.title}"></span>
+    </div>
+    <div class="mt-2" th:text="${post.body}"></div>
+    <div class="mt-2" th:text="|${#lists.size(post.commentList)}개의 답변이 있습니다.|"></div>
+    <div>
+        <ul class="list-outside list-disc ...">
+            <li th:each="comment : ${post.commentList}" th:text="${comment.content}"></li>
+        </ul>
+    </div>
+
+    <form th:action="@{|/comment/write/${post.id}|}" method="post">
+        <textarea name="content" id="content" rows="15" class="border-2 border-gray-500 focus:outline-none focus:border-black-500"></textarea>
+        <i class="fa-solid fa-pen"></i> <input type="submit" value="답변등록"></input>
+    </form>
 </div>
-
-<form th:action="@{|/comment/write/${post.id}|}" method="post">
-    <textarea name="content" id="content" rows="15"></textarea>
-    <input type="submit" value="답변등록">
-</form>
+</html>
