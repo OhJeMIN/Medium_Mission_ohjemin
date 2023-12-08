@@ -19,7 +19,7 @@ public class CommentController {
     private final CommentService commentService;
 
     @PostMapping("/write/{id}")
-    public String writeAnswer(Model model, @PathVariable("id") Integer id, @RequestParam(value="content") String content) {
+    public String write(Model model, @PathVariable("id") Integer id, @RequestParam(value="content") String content) {
         Post post = this.articleService.getPost(id);
         commentService.create(post, content);
         return String.format("redirect:/post/%s", id);
