@@ -6,6 +6,7 @@ import com.ll.medium.global.ut.Exception.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,4 +28,13 @@ public class PostService {
             throw new DataNotFoundException("Post not found");
         }
     }
+
+    public void write(String title, String body) {
+        Post post= new Post();
+        post.setTitle(title);
+        post.setBody(body);
+        post.setCreateDate(LocalDateTime.now());
+        this.postRepository.save(post);
+    }
 }
+

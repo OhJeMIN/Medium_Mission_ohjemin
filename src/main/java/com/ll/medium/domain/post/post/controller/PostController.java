@@ -1,11 +1,17 @@
 package com.ll.medium.domain.post.post.controller;
 
 import com.ll.medium.domain.post.post.entity.Post;
+import com.ll.medium.domain.post.post.form.PostForm;
 import com.ll.medium.domain.post.post.service.PostService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -35,8 +41,8 @@ public class PostController {
     }
 
     @PostMapping("/write")
-    public String postWrite(@RequestParam(value="title") String title, @RequestParam(value="body") String body) {
-        // TODO 질문을 저장한다.
-        return "redirect:domain/post/post/list";
+    public String postWrite(@Valid PostForm postForm, BindingResult bindingResult) {
+        postService.write(postForm.getTitle(),postForm.getBody());
+        return "redirect:/post/list";
     }
 }
