@@ -42,6 +42,9 @@ public class PostController {
 
     @PostMapping("/write")
     public String postWrite(@Valid PostForm postForm, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "domain/post/post/write";
+        }
         postService.write(postForm.getTitle(),postForm.getBody());
         return "redirect:/post/list";
     }
