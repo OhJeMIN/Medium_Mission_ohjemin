@@ -36,7 +36,7 @@ public class PostController {
     }
 
     @GetMapping("/write")
-    public String getWrite() {
+    public String getWrite(PostForm postForm) {
         return "domain/post/post/write";
     }
 

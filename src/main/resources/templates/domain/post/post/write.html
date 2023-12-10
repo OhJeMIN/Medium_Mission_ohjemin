@@ -2,7 +2,10 @@
 
 <div layout:fragment="content" class="p-2">
     <h1 class="font-bold text-center mb-2"><i class="fa-regular fa-newspaper"></i> 질문등록</h1>
-    <form th:action="@{/post/write}" method="post" class="mt-5">
+    <form th:action="@{/post/write}" th:object="${postForm}" method="post" class="mt-5">
+        <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+            <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+        </div>
         <div class="mb-3">
             <label for="title" class="form-label">제목</label>
             <input type="text" name="title" id="title" class="form-control border-2 border-gray-500 focus:outline-none focus:border-black-500 rounded-md">
