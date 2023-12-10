@@ -1,5 +1,6 @@
 package com.ll.medium.domain.post.post.controller;
 
+import com.ll.medium.domain.post.comment.form.CommentForm;
 import com.ll.medium.domain.post.post.entity.Post;
 import com.ll.medium.domain.post.post.form.PostForm;
 import com.ll.medium.domain.post.post.service.PostService;
@@ -29,7 +30,7 @@ public class PostController {
     }
 
     @GetMapping(value = "/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id) {
+    public String detail(Model model, @PathVariable("id") Integer id, CommentForm commentForm) {
         Post post = postService.getPost(id);
         model.addAttribute("post", post);
         return "domain/post/post/detail";
