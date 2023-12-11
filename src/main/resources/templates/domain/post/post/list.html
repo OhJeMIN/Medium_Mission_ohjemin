@@ -4,12 +4,14 @@
     <table class="table">
         <thead>
         <tr>
+            <th>번호</th>
             <th>제목</th>
             <th>작성일시</th>
         </tr>
         </thead>
         <tbody>
         <tr class="hover" th:each="post : ${paging}">
+            <td th:text="${post.id}"></td>
             <td>
                 <a th:href="@{|/post/${post.id}|}" th:text="${post.title}"></a>
             </td>
