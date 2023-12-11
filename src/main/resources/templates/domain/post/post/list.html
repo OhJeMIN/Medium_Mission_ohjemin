@@ -9,7 +9,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="hover" th:each="post : ${postList}">
+        <tr class="hover" th:each="post : ${paging}">
             <td>
                 <a th:href="@{|/post/${post.id}|}" th:text="${post.title}"></a>
             </td>

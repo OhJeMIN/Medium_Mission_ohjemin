@@ -6,15 +6,11 @@ import com.ll.medium.domain.post.post.form.PostForm;
 import com.ll.medium.domain.post.post.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/post")
@@ -23,9 +19,9 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping("/list") // 전체 글 리스트
-    public String list(Model model){
-        List<Post> postList = postService.getList();
-        model.addAttribute("postList", postList);
+    public String list(Model model, @RequestParam(value = "page", defaultValue = "0")int page){
+        Page<Post> paging = postService.getList(page);
+        model.addAttribute("paging", paging);
         return "domain/post/post/list";
     }
 

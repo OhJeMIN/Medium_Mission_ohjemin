@@ -4,6 +4,9 @@ import com.ll.medium.domain.post.post.entity.Post;
 import com.ll.medium.domain.post.post.repository.PostRepository;
 import com.ll.medium.global.ut.Exception.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -35,6 +38,11 @@ public class PostService {
         post.setBody(body);
         post.setCreateDate(LocalDateTime.now());
         this.postRepository.save(post);
+    }
+
+    public Page<Post> getList(int page){
+        Pageable pageable = PageRequest.of(page, 30);
+        return this.postRepository.findAll(pageable);
     }
 }
 
