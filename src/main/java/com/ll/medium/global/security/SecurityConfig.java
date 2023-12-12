@@ -25,6 +25,12 @@ public class SecurityConfig {
                                                 frameOptions.sameOrigin() // 같은 출처의 페이지만 iframe 내에서 표시하도록 설정합니다.
                                 )
                 )
+
+                .formLogin((formLogin) -> formLogin //스프링 시큐리티의 로그인 설정을 담당하는 부분
+                        .loginPage("/memeber/login")// URL
+                        .defaultSuccessUrl("/") //로그인 성공시에 이동하는 디폴트 페이지
+                )
+
                 .csrf( // CSRF 보호에 대한 설정을 합니다.
                         csrf ->
                                 csrf.ignoringRequestMatchers( // CSRF 보호를 무시할 요청 매칭 패턴을 설정합니다.

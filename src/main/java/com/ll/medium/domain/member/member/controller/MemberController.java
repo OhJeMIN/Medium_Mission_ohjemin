@@ -46,7 +46,6 @@ public class MemberController {
             return "domain/member/member/join";
         }
 
-
         return "redirect:/";
     }
 }
