@@ -1,7 +1,7 @@
 <html layout:decorate="~{domain/global/layout/layout}">
 
 <div layout:fragment="content" class="p-2">
-    <h1 class="font-bold text-center mb-2"><i class="fa-regular fa-newspaper"></i> 질문등록</h1>
+    <h1 class="font-bold text-center mb-2"><i class="fa-solid fa-pen"></i> 게시물 작성</h1>
     <form th:action="@{/post/write}" th:object="${postForm}" method="post" class="mt-5">
         <div th:replace="~{domain/global/error/form_errors :: formErrorsFragment}"></div>
         <div class="mb-3">
