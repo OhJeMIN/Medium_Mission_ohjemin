@@ -1,7 +1,7 @@
-package com.ll.medium.domain.user.user.service;
+package com.ll.medium.domain.member.member.service;
 
-import com.ll.medium.domain.user.user.entity.Member;
-import com.ll.medium.domain.user.user.repository.MemberRepository;
+import com.ll.medium.domain.member.member.entity.Member;
+import com.ll.medium.domain.member.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

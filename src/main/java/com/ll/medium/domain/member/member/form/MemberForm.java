@@ -1,4 +1,4 @@
-package com.ll.medium.domain.user.user.form;
+package com.ll.medium.domain.member.member.form;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
