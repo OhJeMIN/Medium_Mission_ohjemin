@@ -28,7 +28,7 @@ public class MemberController {
         }
 
         if (!memberForm.getPassword().equals(memberForm.getPasswordConfirm())) {
-            bindingResult.rejectValue("getPasswordConfirm", "passwordInCorrect",
+            bindingResult.rejectValue("passwordConfirm", "passwordInCorrect",
                     "2개의 패스워드가 일치하지 않습니다.");
             return "domain/member/member/join";
         }
