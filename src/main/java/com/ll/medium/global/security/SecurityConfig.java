@@ -3,6 +3,8 @@ package com.ll.medium.global.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration // 이 클래스는 스프링 설정 클래스임을 나타냅니다.
@@ -32,4 +34,9 @@ public class SecurityConfig {
 
         return http.build(); // 위의 설정에 따라 HttpSecurity 객체를 빌드하고, SecurityFilterChain 객체를 반환합니다.
     }
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }
+
