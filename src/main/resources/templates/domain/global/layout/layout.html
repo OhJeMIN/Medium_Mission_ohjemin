@@ -40,8 +40,8 @@
                 <li><a href="/post/write"><i class="fa-solid fa-pen"></i> 게시물 작성</a></li>
                 <li><a href="/member/join"><i class="fa-solid fa-user-plus"></i> 회원가입</a></li>
                 <li><a href=""><i class="fa-solid fa-user"></i> 내 정보</a></li>
-                <li><a href="@{/member/login}" sec:authorize="isAnonymous()"><i class="fa-solid fa-right-to-bracket"></i> 로그인</a></li>
-                <li><a href="@{/member/logout}" sec:authorize="isAuthenticated()"><i class="fa-solid fa-right-from-bracket"></i> 로그아웃</a></li>
+                <li><a sec:authorize="isAnonymous()" th:href="@{/member/login}" ><i class="fa-solid fa-right-to-bracket"></i> 로그인</a></li>
+                <li><a sec:authorize="isAuthenticated()" th:href="@{/member/logout}" ><i class="fa-solid fa-right-from-bracket"></i> 로그아웃</a></li>
             </ul>
         </div>
     </div>
