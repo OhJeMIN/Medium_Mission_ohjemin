@@ -4,6 +4,7 @@ import com.ll.medium.domain.member.member.form.MemberForm;
 import com.ll.medium.domain.member.member.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +34,18 @@ public class MemberController {
             return "domain/member/member/join";
         }
 
-        memberService.join(memberForm.getUsername(), memberForm.getPassword());
+        try{
+            memberService.join(memberForm.getUsername(), memberForm.getPassword());
+        }catch (DataIntegrityViolationException e){
+            e.printStackTrace();
+            bindingResult.reject("joinFailed", "이미 등록된 사용자입니다.");
+            return "domain/member/member/join";
+        }catch(Exception e) {
+            e.printStackTrace();
+            bindingResult.reject("joinFailed", e.getMessage());
+            return "domain/member/member/join";
+        }
+
 
         return "redirect:/";
     }
