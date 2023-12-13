@@ -46,12 +46,27 @@ public class CommentController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/modify/{id}")
-    public String answerModify(CommentForm commentForm, @PathVariable("id") Integer id, Principal principal) {
+    public String commentModify(CommentForm commentForm, @PathVariable("id") Integer id, Principal principal) {
         Comment comment = commentService.getComment(id);
         if (!comment.getMember().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
         commentForm.setContent(comment.getContent());
-        return "domain/post/post/write_comment";
+        return "domain/post/comment/write";
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/modify/{id}")
+    public String answerModify(@Valid CommentForm commentForm, BindingResult bindingResult,
+                               @PathVariable("id") Integer id, Principal principal) {
+        if (bindingResult.hasErrors()) {
+            return "domain/post/comment/write";
+        }
+        Comment comment = commentService.getComment(id);
+        if (!comment.getMember().getUsername().equals(principal.getName())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
+        }
+        commentService.modify(comment, commentForm.getContent());
+        return String.format("redirect:/post/%s", comment.getPost().getId());
     }
 }

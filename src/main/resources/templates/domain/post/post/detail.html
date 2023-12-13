@@ -36,10 +36,10 @@
             </div>
             <div class="text-right" th:text="${#temporals.format(post.createDate, 'yyyy-MM-dd HH:mm')}"></div>
         </div>
-        <div class="my-3">
-            <a th:href="@{|/comment/modify/${answer.id}|}" class="btn btn-sm btn-outline-secondary"
+        <div class="my-3 text-right">
+            <a th:href="@{|/comment/modify/${comment.id}|}" class="btn btn-sm btn-outline-secondary"
                sec:authorize="isAuthenticated()"
-               th:if="${answer.author != null and #authentication.getPrincipal().getUsername() == answer.author.username}"
+               th:if="${post.member != null and #authentication.getPrincipal().getUsername() == post.member.username}"
                th:text="수정"></a>
         </div>
     </div>
