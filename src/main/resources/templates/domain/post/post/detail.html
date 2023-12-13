@@ -29,7 +29,8 @@
     </div>
     <form th:action="@{|/comment/write/${post.id}|}" th:object="${commentForm}" method="post" class="mt-5">
         <div th:replace="~{domain/global/error/form_errors :: formErrorsFragment}"></div>
-        <textarea th:field="*{content}" rows="15" class="border-2 border-gray-500 focus:outline-none focus:border-black-500 rounded-md"></textarea>
+        <textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" class="border-2 border-gray-500 focus:outline-none focus:border-black-500 rounded-md" rows="10"></textarea>
+        <textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="border-2 border-gray-500 focus:outline-none focus:border-black-500 rounded-md" rows="10"></textarea>
         <input type="submit" class="mt-5 btn btn-outline" value="답변등록">
     </form>
 </div>
