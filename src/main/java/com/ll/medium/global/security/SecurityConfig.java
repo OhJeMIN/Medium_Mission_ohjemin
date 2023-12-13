@@ -4,13 +4,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration // 이 클래스는 스프링 설정 클래스임을 나타냅니다.
+@EnableWebSecurity //자동으로 기본 로그인 페이지와 로그아웃 기능을 제공
+@EnableMethodSecurity(prePostEnabled = true) //로그인 여부를 판별
 public class SecurityConfig {
 
     // SecurityFilterChain 타입을 반환하는 메서드입니다. HttpSecurity를 인자로 받습니다.

@@ -8,6 +8,7 @@ import com.ll.medium.domain.post.post.entity.Post;
 import com.ll.medium.domain.post.post.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,7 +25,7 @@ public class CommentController {
     private final PostService postService;
     private final CommentService commentService;
     private final MemberService memberService;
-
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/write/{id}")
     public String write(Model model, @PathVariable("id") Integer id,
                         @Valid CommentForm commentForm, BindingResult bindingResult ,

@@ -9,6 +9,7 @@ import com.ll.medium.domain.post.post.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,14 +30,14 @@ public class PostController {
         model.addAttribute("paging", paging);
         return "domain/post/post/list";
     }
-
+    @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/{id}")
     public String detail(Model model, @PathVariable("id") Integer id, CommentForm commentForm) {
         Post post = postService.getPost(id);
         model.addAttribute("post", post);
         return "domain/post/post/detail";
     }
-
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/write")
     public String getWrite(PostForm postForm) {
         return "domain/post/post/write";
