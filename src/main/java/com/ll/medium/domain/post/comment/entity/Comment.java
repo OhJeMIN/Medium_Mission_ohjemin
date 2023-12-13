@@ -20,6 +20,8 @@ public class Comment extends BaseEntity {
 
     private LocalDateTime createDate;
 
+    private LocalDateTime modifyDate;
+
     @ManyToOne
     private Post post;
 

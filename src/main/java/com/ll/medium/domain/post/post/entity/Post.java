@@ -23,6 +23,8 @@ public class Post extends BaseEntity {
 
     private LocalDateTime createDate;
 
+    private LocalDateTime modifyDate;
+
     @OneToMany(mappedBy = "post" , cascade = CascadeType.REMOVE)
     private List<Comment> commentList;
 
