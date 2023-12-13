@@ -67,4 +67,19 @@ public class PostController {
         return "domain/post/post/write";
 
     }
+
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/modify/{id}")
+    public String postModify(@Valid PostForm postForm, BindingResult bindingResult, Principal principal, @PathVariable("id") Integer id) {
+        if (bindingResult.hasErrors()) {
+            return "domain/post/post/write";
+        }
+        Post post = postService.getPost(id);
+        if (!post.getMember().getUsername().equals(principal.getName())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다");
+        }
+        postService.modify(post, post.getTitle(), post.getBody());
+        return String.format("redirect:/post/%s", id);
+
+    }
 }
