@@ -9,5 +9,6 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     Page<Post> findAll(Pageable pageable);
     Page<Post> findByIsPublishedTrue(Pageable pageable);
 
+    Page<Post> findById(Pageable pageable, Long id);
 
 }

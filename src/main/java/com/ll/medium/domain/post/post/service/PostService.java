@@ -49,14 +49,21 @@ public class PostService {
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page, 30, Sort.by(sorts));
-        return this.postRepository.findAll(pageable);
+        return postRepository.findAll(pageable);
+    }
+
+    public Page<Post> getListById(int page, Long id){
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createDate"));
+        Pageable pageable = PageRequest.of(page, 30, Sort.by(sorts));
+        return postRepository.findById(pageable, id);
     }
 
     public Page<Post> getListIsPublished(int page){
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page, 30, Sort.by(sorts));
-        return this.postRepository.findByIsPublishedTrue(pageable);
+        return postRepository.findByIsPublishedTrue(pageable);
     }
 
     public void modify(Post post, String title, String body) {
