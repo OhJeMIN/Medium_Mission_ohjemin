@@ -19,7 +19,7 @@
 ## 필수 미션 2 : 글 CRUD
 
 - [ ] **엔드포인트**
-    - [x] GET / : 홈
+    - [ ] GET / : 홈
     - [x] GET /post/list : 전체 글 리스트
     - [ ] GET /post/myList : 내 글 리스트
     - [x] GET /post/1 : 1번 글 상세보기
@@ -40,3 +40,22 @@
         - [x] title
         - [x] body
         - [ ] isPublished (체크박스, value="true")
+
+## 선택 미션 3 : 댓글 CRUD
+
+- [x] **엔드포인트**
+    - [x] 댓글 목록 : 글 상세페이지 하단 (예: 5번글에 대한 댓글 작성 폼)
+    - [x] 댓글 작성
+        - [x] 글 상세페이지 하단 : 5번글에 대한 댓글 작성 폼
+        - [x] POST /post/comment/write/5 : 5번글에 대한 댓글 작성 폼 처리
+    - [x] 댓글 수정
+        - [x] GET /post/5/comment/6/modify  : 5번글에 대한 6번 댓글 수정 폼
+        - [x] POST /post/5/comment/6/modify : 5번글에 대한 6번 댓글 수정 폼 처리
+    - [x] 댓글 삭제
+        - [x] DELETE /post/5/comment/delete/6 : 5번글에 대한 6번 댓글 삭제
+
+- [x] **폼**
+    - [x] 댓글 작성 폼
+        - [x] body
+    - [x] 댓글 수정 폼
+        - [x] body
