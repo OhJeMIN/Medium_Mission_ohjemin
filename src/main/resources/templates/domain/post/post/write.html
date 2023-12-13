@@ -13,8 +13,8 @@
             <label for="body" class="form-label">내용</label>
             <textarea name="body" th:field="*{body}" id="body" rows="15" class="border-2 border-gray-500 focus:outline-none focus:border-black-500 rounded-md"></textarea>
         </div>
-        <!--<label for="isPublished" class="form-label">Published</label>
-        <input type="checkbox" id="isPublished" name="isPublished" value="true">-->
+        <label for="isPublished" class="form-label">Published</label>
+        <input type="checkbox" th:field="*{isPublished}" id="isPublished" name="isPublished" value="true">
         <br>
         <input type="submit" class="mt-5 btn btn-outline" value="저장하기">
     </form>

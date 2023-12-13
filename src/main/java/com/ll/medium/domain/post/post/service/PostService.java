@@ -35,12 +35,13 @@ public class PostService {
         }
     }
 
-    public void write(String title, String body , Member member) {
+    public void write(String title, String body, boolean isPublished , Member member) {
         Post post= new Post();
         post.setTitle(title);
         post.setBody(body);
         post.setCreateDate(LocalDateTime.now());
         post.setMember(member);
+        post.setPublished(isPublished);
         this.postRepository.save(post);
     }
 

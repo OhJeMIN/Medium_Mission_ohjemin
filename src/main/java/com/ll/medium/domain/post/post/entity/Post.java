@@ -30,4 +30,7 @@ public class Post extends BaseEntity {
 
     @ManyToOne
     private Member member;
+
+    @Column(nullable = true)
+    private boolean isPublished;
 }

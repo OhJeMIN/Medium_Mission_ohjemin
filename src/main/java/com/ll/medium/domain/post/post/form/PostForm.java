@@ -14,4 +14,7 @@ public class PostForm {
 
     @NotEmpty(message="내용은 필수항목입니다.")
     private String body;
+
+    @NotEmpty(message="공개여부는 필수항목입니다.")
+    private boolean isPublished;
 }

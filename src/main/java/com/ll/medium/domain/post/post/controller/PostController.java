@@ -44,6 +44,7 @@ public class PostController {
     public String getWrite(PostForm postForm) {
         return "domain/post/post/write";
     }
+
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/write")
     public String postWrite(@Valid PostForm postForm, BindingResult bindingResult , Principal principal) {
@@ -51,7 +52,7 @@ public class PostController {
             return "domain/post/post/write";
         }
         Member member = memberService.getMember(principal.getName());
-        postService.write(postForm.getTitle(),postForm.getBody() , member);
+        postService.write(postForm.getTitle(),postForm.getBody(), postForm.isPublished(),member);
         return "redirect:/post/list";
     }
 
