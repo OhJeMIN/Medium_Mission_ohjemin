@@ -78,7 +78,7 @@ public class PostController {
         if (!post.getMember().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다");
         }
-        postService.modify(post, post.getTitle(), post.getBody());
+        postService.modify(post, postForm.getTitle(), postForm.getBody());
         return String.format("redirect:/post/%s", id);
 
     }
