@@ -26,9 +26,9 @@ public class CommentService {
     }
 
     public Comment getComment(Integer id) {
-        Optional<Comment> answer = commentRepository.findById(id);
-        if (answer.isPresent()) {
-            return answer.get();
+        Optional<Comment> comment = commentRepository.findById(id);
+        if (comment.isPresent()) {
+            return comment.get();
         } else {
             throw new DataNotFoundException("comment not found");
         }
@@ -38,6 +38,10 @@ public class CommentService {
         comment.setContent(content);
         comment.setModifyDate(LocalDateTime.now());
         this.commentRepository.save(comment);
+    }
+
+    public void delete(Comment comment) {
+        commentRepository.delete(comment);
     }
 
 }

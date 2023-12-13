@@ -41,6 +41,10 @@
                sec:authorize="isAuthenticated()"
                th:if="${comment.member != null and #authentication.getPrincipal().getUsername() == comment.member.username}"
                th:text="수정"></a>
+            <a href="javascript:void(0);" th:data-uri="@{|/comment/delete/${comment.id}|}"
+               class="delete btn btn-sm btn-outline-secondary" sec:authorize="isAuthenticated()"
+               th:if="${comment.member != null and #authentication.getPrincipal().getUsername() == comment.member.username}"
+               th:text="삭제"></a>
         </div>
     </div>
     <!--입력된 답변 끝-->
