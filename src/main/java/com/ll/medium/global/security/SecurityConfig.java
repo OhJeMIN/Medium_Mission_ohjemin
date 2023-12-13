@@ -35,7 +35,7 @@ public class SecurityConfig {
 
                 .formLogin((formLogin) -> formLogin //스프링 시큐리티의 로그인 설정을 담당하는 부분
                         .loginPage("/member/login")// URL
-                        .defaultSuccessUrl("/") //로그인 성공시에 이동하는 디폴트 페이지
+                        .defaultSuccessUrl("/post/list") //로그인 성공시에 이동하는 디폴트 페이지
                 )
                 .logout((logout) -> logout //로그아웃을 위한 설정
                         .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout")) //로그아웃 URL

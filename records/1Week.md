@@ -19,7 +19,7 @@
 ## 필수 미션 2 : 글 CRUD
 
 - [ ] **엔드포인트**
-    - [ ] GET / : 홈
+    - [x] GET / : 홈
     - [x] GET /post/list : 전체 글 리스트
     - [x] GET /post/myList : 내 글 리스트
     - [x] GET /post/1 : 1번 글 상세보기
@@ -32,7 +32,7 @@
     - [ ] GET /b/user1/3 : 회원 user1 의 글 중에서 3번글 상세보기
 
 - [x] **폼**
-    - [ ] 글 쓰기 폼
+    - [x] 글 쓰기 폼
         - [x] title
         - [x] body
         - [x] isPublished (체크박스, value="true")
