@@ -21,7 +21,7 @@
 - [ ] **엔드포인트**
     - [ ] GET / : 홈
     - [x] GET /post/list : 전체 글 리스트
-    - [ ] GET /post/myList : 내 글 리스트
+    - [x] GET /post/myList : 내 글 리스트
     - [x] GET /post/1 : 1번 글 상세보기
     - [x] GET /post/write : 글 작성 폼
     - [x] POST /post/write : 글 작성 처리
@@ -31,15 +31,15 @@
     - [ ] GET /b/user1 : 회원 user1 의 전체 글 리스트
     - [ ] GET /b/user1/3 : 회원 user1 의 글 중에서 3번글 상세보기
 
-- [ ] **폼**
+- [x] **폼**
     - [ ] 글 쓰기 폼
         - [x] title
         - [x] body
-        - [ ] isPublished (체크박스, value="true")
-    - [ ] 글 수정 폼
+        - [x] isPublished (체크박스, value="true")
+    - [x] 글 수정 폼
         - [x] title
         - [x] body
-        - [ ] isPublished (체크박스, value="true")
+        - [x] isPublished (체크박스, value="true")
 
 ## 선택 미션 3 : 댓글 CRUD
 

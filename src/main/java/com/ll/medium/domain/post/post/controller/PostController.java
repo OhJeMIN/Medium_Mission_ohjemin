@@ -74,6 +74,7 @@ public class PostController {
         }
         postForm.setTitle(post.getTitle());
         postForm.setBody(post.getBody());
+        postForm.setPublished(postForm.isPublished());
         return "domain/post/post/write";
 
     }
@@ -88,7 +89,7 @@ public class PostController {
         if (!post.getMember().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다");
         }
-        postService.modify(post, postForm.getTitle(), postForm.getBody());
+        postService.modify(post, postForm.getTitle(), postForm.getBody(), postForm.isPublished());
         return String.format("redirect:/post/%s", id);
 
     }

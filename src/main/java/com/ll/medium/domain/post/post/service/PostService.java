@@ -66,10 +66,11 @@ public class PostService {
         return postRepository.findByIsPublishedTrue(pageable);
     }
 
-    public void modify(Post post, String title, String body) {
+    public void modify(Post post, String title, String body , Boolean ispublished) {
         post.setTitle(title);
         post.setBody(body);
         post.setModifyDate(LocalDateTime.now());
+        post.setPublished(ispublished);
         postRepository.save(post);
     }
 
