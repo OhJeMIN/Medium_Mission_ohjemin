@@ -2,9 +2,12 @@ package com.ll.medium.domain.member.member.service;
 
 import com.ll.medium.domain.member.member.entity.Member;
 import com.ll.medium.domain.member.member.repository.MemberRepository;
+import com.ll.medium.global.ut.Exception.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 
 @Service
@@ -19,6 +22,14 @@ public class MemberService {
         user.setPassword(passwordEncoder.encode(password));
         memberRepository.save(user);
         return user;
+    }
+    public Member getMember(String username) {
+        Optional<Member> siteUser = this.memberRepository.findByusername(username);
+        if (siteUser.isPresent()) {
+            return siteUser.get();
+        } else {
+            throw new DataNotFoundException("member not found");
+        }
     }
 
 }
