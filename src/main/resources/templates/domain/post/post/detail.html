@@ -3,34 +3,40 @@
 <div layout:fragment="content" class="p-2">
     <h1 class="font-bold text-center mb-2"><i class="fa-regular fa-newspaper"></i> 글 내용</h1>
 
-    <div class="mt-2">
-        <div class="badge badge-outline" th:text="${post.id}">default</div>
+    <!--<div class="mt-2">
         <span th:text="${post.title}"></span>
+        <div class="mb-2">
+            <span th:if="${post.member != null}" th:text="${post.member.username}"></span>
+        </div>
     </div>
-    <div class="mt-2" th:text="${post.body}"></div>
-    <!--<div>
-        <ul class="list-outside list-disc ...">
-            <li th:each="comment : ${post.commentList}" th:text="${comment.content}"></li>
-        </ul>
-    </div>-->
-    <div class="overflow-x-auto mt-5">
-        <table class="table">
-            <thead>
-            <tr th:text="|${#lists.size(post.commentList)}개의 답변이 있습니다.|">
-                <th>제목</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="comment : ${post.commentList}">
-                <td th:text="${comment.content}"></td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="mt-2" th:text="${post.body}"></div>-->
+
+    <div class="border border-black p-4 rounded-lg">
+        <h2 class="text-2xl font-bold mb-2" th:text="${post.title}"></h2>
+        <p class="text-gray-700 whitespace-pre-line" th:text="${post.body}"></p>
+        <div class=" items-center mb-4">
+            <div class="text-right">
+                <span th:if="${post.member != null}" th:text="${post.member.username}"></span>
+            </div>
+            <div class="text-right" th:text="${#temporals.format(post.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+        </div>
     </div>
+    <!--답변 시작-->
+    <div class="text-xl font-bold mb-2 mt-5" th:text="|${#lists.size(post.commentList)}개의 답변이 있습니다.|"></div>
+    <div th:each="comment : ${post.commentList}" class="overflow-x-auto mt-5 border border-black p-4 rounded-lg mb-2">
+        <div th:text="${comment.content}"></div>
+        <div class=" items-center mb-4">
+            <div class="text-right">
+                <span th:if="${post.member != null}" th:text="${post.member.username}"></span>
+            </div>
+            <div class="text-right" th:text="${#temporals.format(post.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+        </div>
+    </div>
+    <!--입력된 답변 끝-->
     <form th:action="@{|/comment/write/${post.id}|}" th:object="${commentForm}" method="post" class="mt-5">
         <div th:replace="~{domain/global/error/form_errors :: formErrorsFragment}"></div>
-        <textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" class="border-2 border-gray-500 focus:outline-none focus:border-black-500 rounded-md" rows="10"></textarea>
-        <textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="border-2 border-gray-500 focus:outline-none focus:border-black-500 rounded-md" rows="10"></textarea>
+        <textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" class="border border-black p-4 rounded-lg" rows="10"></textarea>
+        <textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="border border-black p-4 rounded-lg" rows="10"></textarea>
         <input type="submit" class="mt-5 btn btn-outline" value="답변등록">
     </form>
 </div>
