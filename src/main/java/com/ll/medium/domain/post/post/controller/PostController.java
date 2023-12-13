@@ -82,4 +82,15 @@ public class PostController {
         return String.format("redirect:/post/%s", id);
 
     }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/delete/{id}")
+    public String postDelete(Principal principal, @PathVariable("id") Integer id){
+        Post post = postService.getPost(id);
+        if (!post.getMember().getUsername().equals(principal.getName())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제권한이 없습니다.");
+        }
+        postService.delete(post);
+        return "redirect:/";
+    }
 }
