@@ -26,7 +26,7 @@ public class PostController {
     private final PostService postService;
     private final MemberService memberService;
 
-    @GetMapping("/list") // 전체 글 리스트
+    @GetMapping("/list") // 공개된 전체 글 리스트
     public String list(Model model, @RequestParam(value = "page", defaultValue = "0")int page){
         Page<Post> paging = postService.getListIsPublished(page);
         model.addAttribute("paging", paging);
