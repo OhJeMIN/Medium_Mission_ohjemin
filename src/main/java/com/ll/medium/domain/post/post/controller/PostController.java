@@ -28,7 +28,7 @@ public class PostController {
 
     @GetMapping("/list") // 전체 글 리스트
     public String list(Model model, @RequestParam(value = "page", defaultValue = "0")int page){
-        Page<Post> paging = postService.getList(page);
+        Page<Post> paging = postService.getListIsPublished(page);
         model.addAttribute("paging", paging);
         return "domain/post/post/list";
     }

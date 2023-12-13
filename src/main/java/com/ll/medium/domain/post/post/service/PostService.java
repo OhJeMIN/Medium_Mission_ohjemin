@@ -52,6 +52,13 @@ public class PostService {
         return this.postRepository.findAll(pageable);
     }
 
+    public Page<Post> getListIsPublished(int page){
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createDate"));
+        Pageable pageable = PageRequest.of(page, 30, Sort.by(sorts));
+        return this.postRepository.findByIsPublishedTrue(pageable);
+    }
+
     public void modify(Post post, String title, String body) {
         post.setTitle(title);
         post.setBody(body);
