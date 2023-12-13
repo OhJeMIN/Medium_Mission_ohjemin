@@ -1,5 +1,6 @@
 package com.ll.medium.domain.post.post.entity;
 
+import com.ll.medium.domain.member.member.entity.Member;
 import com.ll.medium.domain.post.comment.entity.Comment;
 import com.ll.medium.global.jpa.BaseEntity;
 import jakarta.persistence.*;
@@ -24,4 +25,7 @@ public class Post extends BaseEntity {
 
     @OneToMany(mappedBy = "post" , cascade = CascadeType.REMOVE)
     private List<Comment> commentList;
+
+    @ManyToOne
+    private Member member;
 }

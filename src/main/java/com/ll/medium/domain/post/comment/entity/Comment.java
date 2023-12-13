@@ -1,5 +1,6 @@
 package com.ll.medium.domain.post.comment.entity;
 
+import com.ll.medium.domain.member.member.entity.Member;
 import com.ll.medium.domain.post.post.entity.Post;
 import com.ll.medium.global.jpa.BaseEntity;
 import jakarta.persistence.*;
@@ -21,4 +22,7 @@ public class Comment extends BaseEntity {
 
     @ManyToOne
     private Post post;
+
+    @ManyToOne
+    private Member member;
 }
