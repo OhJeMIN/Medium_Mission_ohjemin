@@ -39,7 +39,7 @@
         <div class="my-3 text-right">
             <a th:href="@{|/comment/modify/${comment.id}|}" class="btn btn-sm btn-outline-secondary"
                sec:authorize="isAuthenticated()"
-               th:if="${post.member != null and #authentication.getPrincipal().getUsername() == post.member.username}"
+               th:if="${comment.member != null and #authentication.getPrincipal().getUsername() == comment.member.username}"
                th:text="수정"></a>
         </div>
     </div>
