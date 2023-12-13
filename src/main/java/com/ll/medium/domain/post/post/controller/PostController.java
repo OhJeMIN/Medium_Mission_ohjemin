@@ -9,11 +9,13 @@ import com.ll.medium.domain.post.post.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
 
@@ -51,5 +53,18 @@ public class PostController {
         Member member = memberService.getMember(principal.getName());
         postService.write(postForm.getTitle(),postForm.getBody() , member);
         return "redirect:/post/list";
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping ("/modify/{id}")
+    public String postModify(PostForm postForm , @PathVariable("id")Integer id, Principal principal){
+        Post post = postService.getPost(id);
+        if(!post.getMember().getUsername().equals(principal.getName())){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다");
+        }
+        postForm.setTitle(post.getTitle());
+        postForm.setBody(post.getBody());
+        return "domain/post/post/write";
+
     }
 }
