@@ -48,8 +48,13 @@ public class PostService {
     public Page<Post> getList(int page){
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("createDate"));
-        Pageable pageable = PageRequest.of(page, 30, Sort.by(sorts));
+        Pageable pageable = PageRequest.of(0, 30, Sort.by(sorts));
         return postRepository.findAll(pageable);
+    }
+
+    public Page<Post> getLatestPosts() {
+        Pageable pageable = PageRequest.of(0, 30, Sort.by("createDate").descending());
+        return postRepository.findAllByOrderByCreateDateDesc(pageable);
     }
 
     public Page<Post> getListById(int page, Long id){

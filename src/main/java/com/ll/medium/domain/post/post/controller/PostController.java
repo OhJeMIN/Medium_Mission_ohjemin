@@ -80,7 +80,7 @@ public class PostController {
     }
 
     @PreAuthorize("isAuthenticated()")
-    @PostMapping("/modify/{id}")
+    @PutMapping("/modify/{id}")
     public String postModify(@Valid PostForm postForm, BindingResult bindingResult, Principal principal, @PathVariable("id") Integer id) {
         if (bindingResult.hasErrors()) {
             return "domain/post/post/write";
@@ -95,7 +95,7 @@ public class PostController {
     }
 
     @PreAuthorize("isAuthenticated()")
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String postDelete(Principal principal, @PathVariable("id") Integer id){
         Post post = postService.getPost(id);
         if (!post.getMember().getUsername().equals(principal.getName())) {
