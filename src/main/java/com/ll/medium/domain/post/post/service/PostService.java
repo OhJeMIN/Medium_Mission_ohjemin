@@ -1,5 +1,6 @@
 package com.ll.medium.domain.post.post.service;
 
+import com.ll.medium.domain.member.member.entity.Member;
 import com.ll.medium.domain.post.post.entity.Post;
 import com.ll.medium.domain.post.post.repository.PostRepository;
 import com.ll.medium.global.ut.Exception.DataNotFoundException;
@@ -32,11 +33,12 @@ public class PostService {
         }
     }
 
-    public void write(String title, String body) {
+    public void write(String title, String body , Member member) {
         Post post= new Post();
         post.setTitle(title);
         post.setBody(body);
         post.setCreateDate(LocalDateTime.now());
+        post.setMember(member);
         this.postRepository.save(post);
     }
 
