@@ -30,7 +30,7 @@ public class PostController {
         model.addAttribute("paging", paging);
         return "domain/post/post/list";
     }
-    @PreAuthorize("isAuthenticated()")
+
     @GetMapping(value = "/{id}")
     public String detail(Model model, @PathVariable("id") Integer id, CommentForm commentForm) {
         Post post = postService.getPost(id);
@@ -42,7 +42,7 @@ public class PostController {
     public String getWrite(PostForm postForm) {
         return "domain/post/post/write";
     }
-
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/write")
     public String postWrite(@Valid PostForm postForm, BindingResult bindingResult , Principal principal) {
         if(bindingResult.hasErrors()){
