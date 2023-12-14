@@ -20,7 +20,7 @@
                       th:text="${#lists.size(post.commentList)}">
                     </span>
             </td>
-            <td><a th:if="${post.member != null}" th:href="@{'/b/' + ${post.member.username}}" th:text="${post.member.username}"></a></td>
+            <td><span th:if="${post.member != null}" th:text="${post.member.username}"></span></td>
             <td th:text="${post.createDate}"></td>
         </tr>
         </tbody>
