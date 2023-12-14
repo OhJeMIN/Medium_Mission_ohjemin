@@ -107,10 +107,19 @@ public class PostController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/like/{id}")
-    public String questionVote(Principal principal, @PathVariable("id") Integer id) {
+    public String like(Principal principal, @PathVariable("id") Integer id) {
         Post post = postService.getPost(id);
         Member member = memberService.getMember(principal.getName());
         postService.like(post, member);
+        return String.format("redirect:/post/%s", id);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/canCellike/{id}")
+    public String cancelLike(Principal principal, @PathVariable("id") Integer id) {
+        Post post = postService.getPost(id);
+        Member member = memberService.getMember(principal.getName());
+        postService.cacelLike(post, member);
         return String.format("redirect:/post/%s", id);
     }
 }

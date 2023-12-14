@@ -37,4 +37,8 @@ public class Post extends BaseEntity {
 
     @ManyToMany
     Set<Member> like;
+
+    public void removeLikeById(Long memberId) {
+        like.removeIf(member -> member.getId().equals(memberId));
+    }
 }

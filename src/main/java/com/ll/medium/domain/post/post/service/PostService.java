@@ -87,5 +87,10 @@ public class PostService {
         post.getLike().add(member);
         postRepository.save(post);
     }
+
+    public void cacelLike(Post post, Member member) {
+        post.removeLikeById(member.getId());
+        postRepository.save(post);
+    }
 }
 

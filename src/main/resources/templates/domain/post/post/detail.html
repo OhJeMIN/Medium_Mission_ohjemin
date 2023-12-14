@@ -19,6 +19,10 @@
                 추천
                 <span class="badge rounded-pill bg-success" th:text="${#lists.size(post.like)}"></span>
             </a>
+            <a href="javascript:void(0);" class="recommendCancel btn btn-sm btn-outline-secondary"
+               th:data-uri="@{|/post/canCellike/${post.id}|}">
+                추천 취소
+            </a>
             <a th:href="@{|/post/modify/${post.id}|}" class="btn btn-sm btn-outline-secondary"
                sec:authorize="isAuthenticated()"
                th:if="${post.member != null and #authentication.getPrincipal().getUsername() == post.member.username}"
