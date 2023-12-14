@@ -2,6 +2,7 @@ package com.ll.medium.domain.post.b.b;
 
 import com.ll.medium.domain.member.member.entity.Member;
 import com.ll.medium.domain.member.member.service.MemberService;
+import com.ll.medium.domain.post.comment.form.CommentForm;
 import com.ll.medium.domain.post.post.entity.Post;
 import com.ll.medium.domain.post.post.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,7 @@ public class Bcontroller {
     }
 
     @GetMapping("/{username}/{id}")
-    public String showMemberDetail(Model model,@PathVariable("username") String username, @PathVariable("id") Integer id){
+    public String showMemberDetail(Model model, @PathVariable("username") String username, @PathVariable("id") Integer id , CommentForm commentForm){
         Post post = postService.getPost(id);
         model.addAttribute("post", post);
         return "domain/post/b/detail";

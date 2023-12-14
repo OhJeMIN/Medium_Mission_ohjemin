@@ -48,11 +48,11 @@
         </div>
     </div>
     <!--입력된 답변 끝-->
-    <!--<form th:action="@{|/comment/write/${post.id}|}" th:object="${commentForm}" method="post" class="mt-5">
+    <form th:action="@{|/comment/write/${post.id}|}" th:object="${commentForm}" method="post" class="mt-5">
         <div th:replace="~{domain/global/error/form_errors :: formErrorsFragment}"></div>
         <textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" class="border border-black p-4 rounded-lg" rows="10"></textarea>
         <textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="border border-black p-4 rounded-lg" rows="10"></textarea>
         <input type="submit" class="mt-5 btn btn-outline" value="답변등록">
-    </form>-->
+    </form>
 </div>
 </html>
