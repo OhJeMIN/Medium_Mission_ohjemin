@@ -57,11 +57,11 @@ public class PostService {
         return postRepository.findAllByOrderByCreateDateDesc(pageable);
     }
 
-    public Page<Post> getListById(int page, Long id){
+    public Page<Post> getListByMemberId(int page, Long id){
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page, 30, Sort.by(sorts));
-        return postRepository.findById(pageable, id);
+        return postRepository.findByMemberId(pageable, id);
     }
 
     public Page<Post> getListIsPublished(int page){

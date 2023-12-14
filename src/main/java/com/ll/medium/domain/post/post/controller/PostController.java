@@ -36,7 +36,7 @@ public class PostController {
     @GetMapping("/myList") // 내 글 리스트
     public String myList(Model model, @RequestParam(value = "page", defaultValue = "0")int page ,Principal principal){
         Member member = memberService.getMember(principal.getName());
-        Page<Post> paging = postService.getListById(page,member.getId());
+        Page<Post> paging = postService.getListByMemberId(page,member.getId());
         model.addAttribute("paging", paging);
         model.addAttribute("myPage", true);
         return "domain/post/post/list";

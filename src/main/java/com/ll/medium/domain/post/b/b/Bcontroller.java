@@ -25,7 +25,7 @@ public class Bcontroller {
                                  @RequestParam(value = "page", defaultValue = "0")int page,
                                  @PathVariable("username")String username){
         Member member = memberService.getMember(username);
-        Page<Post> paging = postService.getListById(page,member.getId());
+        Page<Post> paging = postService.getListByMemberId(page,member.getId());
         model.addAttribute("paging", paging);
         return "domain/post/b/list";
     }
