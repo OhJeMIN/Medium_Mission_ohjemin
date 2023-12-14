@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -33,4 +34,7 @@ public class Post extends BaseEntity {
 
     @Column(nullable = true)
     private boolean isPublished;
+
+    @ManyToMany
+    Set<Member> like;
 }
