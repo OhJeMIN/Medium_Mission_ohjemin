@@ -104,4 +104,13 @@ public class PostController {
         postService.delete(post);
         return "redirect:/";
     }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/like/{id}")
+    public String questionVote(Principal principal, @PathVariable("id") Integer id) {
+        Post post = postService.getPost(id);
+        Member member = memberService.getMember(principal.getName());
+        postService.like(post, member);
+        return String.format("redirect:/post/%s", id);
+    }
 }

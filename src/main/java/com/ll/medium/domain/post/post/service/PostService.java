@@ -82,5 +82,10 @@ public class PostService {
     public void delete(Post post) {
         postRepository.delete(post);
     }
+
+    public void like(Post post, Member member) {
+        post.getLike().add(member);
+        postRepository.save(post);
+    }
 }
 
