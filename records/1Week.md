@@ -18,7 +18,7 @@
 
 ## 필수 미션 2 : 글 CRUD
 
-- [ ] **엔드포인트**
+- [x] **엔드포인트**
     - [x] GET / : 홈
     - [x] GET /post/list : 전체 글 리스트
     - [x] GET /post/myList : 내 글 리스트
@@ -28,8 +28,8 @@
     - [x] GET /post/modify/1 : 1번 글 수정 폼
     - [x] PUT /post/modify/1 : 1번 글 수정 폼 처리
     - [x] DELETE /post/delete/1 : 1번 글 삭제
-    - [ ] GET /b/user1 : 회원 user1 의 전체 글 리스트
-    - [ ] GET /b/user1/3 : 회원 user1 의 글 중에서 3번글 상세보기
+    - [x] GET /b/user1 : 회원 user1 의 전체 글 리스트
+    - [x] GET /b/user1/3 : 회원 user1 의 글 중에서 3번글 상세보기
 
 - [x] **폼**
     - [x] 글 쓰기 폼
@@ -40,6 +40,19 @@
         - [x] title
         - [x] body
         - [x] isPublished (체크박스, value="true")
+
+## 선택 미션 1 : 조회수
+
+- [ ] **엔드포인트**
+    - [ ] 조회수 증가
+        - [ ] POST /post/5/increaseHit : 5번글에 대한 조회수 증가
+
+## 선택 미션 2 : 추천
+
+- [ ] **엔드포인트**
+    - [ ] 추천
+        - [ ] POST /post/5/like : 5번글을 추천
+        - [ ] DELETE /post/5/cancelLike : 5번글을 추천 취소
 
 ## 선택 미션 3 : 댓글 CRUD
 
