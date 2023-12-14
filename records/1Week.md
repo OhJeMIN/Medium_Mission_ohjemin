@@ -43,16 +43,16 @@
 
 ## 선택 미션 1 : 조회수
 
-- [ ] **엔드포인트**
-    - [ ] 조회수 증가
-        - [ ] POST /post/5/increaseHit : 5번글에 대한 조회수 증가
+- [x] **엔드포인트**
+    - [x] 조회수 증가
+        - [x] POST /post/5/increaseHit : 5번글에 대한 조회수 증가
 
 ## 선택 미션 2 : 추천
 
-- [ ] **엔드포인트**
-    - [ ] 추천
-        - [ ] POST /post/5/like : 5번글을 추천
-        - [ ] DELETE /post/5/cancelLike : 5번글을 추천 취소
+- [x] **엔드포인트**
+    - [x] 추천
+        - [x] POST /post/5/like : 5번글을 추천
+        - [x] DELETE /post/5/cancelLike : 5번글을 추천 취소
 
 ## 선택 미션 3 : 댓글 CRUD
 

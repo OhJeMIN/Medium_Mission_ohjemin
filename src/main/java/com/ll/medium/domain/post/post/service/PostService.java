@@ -27,9 +27,12 @@ public class PostService {
     }
 
     public Post getPost(Integer id) {
-        Optional<Post> post = this.postRepository.findById(id);
-        if (post.isPresent()) {
-            return post.get();
+        Optional<Post> postOptional = this.postRepository.findById(id);
+        if (postOptional.isPresent()) {
+            Post post = postOptional.get();
+            post.increaseViewCount();
+            postRepository.save(post); // 변경된 조회수를 데이터베이스에 저장
+            return post;
         } else {
             throw new DataNotFoundException("Post not found");
         }
