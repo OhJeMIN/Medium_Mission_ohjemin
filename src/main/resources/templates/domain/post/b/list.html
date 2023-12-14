@@ -11,7 +11,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="hover text-center" th:each="post : ${paging}" th:if="${post.isPublished || myPage}">
+        <tr class="hover text-center" th:each="post : ${paging}" th:if="${post.isPublished}">
             <td th:text="${post.id}"></td>
             <td class="text-start">
                 <a th:href="@{|/post/${post.id}|}" th:text="${post.title}"></a>

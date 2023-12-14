@@ -27,6 +27,6 @@ public class Bcontroller {
         Member member = memberService.getMember(username);
         Page<Post> paging = postService.getListById(page,member.getId());
         model.addAttribute("paging", paging);
-        return "domain/post/post/list";
+        return "domain/post/b/list";
     }
 }
