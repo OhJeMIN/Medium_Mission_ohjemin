@@ -29,4 +29,11 @@ public class Bcontroller {
         model.addAttribute("paging", paging);
         return "domain/post/b/list";
     }
+
+    @GetMapping("/{username}/{id}")
+    public String showMemberDetail(Model model,@PathVariable("username") String username, @PathVariable("id") Integer id){
+        Post post = postService.getPost(id);
+        model.addAttribute("post", post);
+        return "domain/post/b/detail";
+    }
 }

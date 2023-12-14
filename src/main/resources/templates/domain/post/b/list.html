@@ -14,7 +14,7 @@
         <tr class="hover text-center" th:each="post : ${paging}" th:if="${post.isPublished}">
             <td th:text="${post.id}"></td>
             <td class="text-start">
-                <a th:href="@{|/post/${post.id}|}" th:text="${post.title}"></a>
+                <a th:href="@{|/b/${post.member.getUsername()}/${post.id}|}" th:text="${post.title}"></a>
                 <span class="text-red-500 small ms-2"
                       th:if="${#lists.size(post.commentList) > 0}"
                       th:text="${#lists.size(post.commentList)}">
