@@ -1,0 +1,24 @@
+<html layout:decorate="~{domain/global/layout/layout}">
+
+<div layout:fragment="content" class="p-2">
+<div class="my-3 border-bottom">
+    <h1 class="font-bold mb-2"><i class="fa-solid fa-user-plus"></i> 회원가입</h1>
+</div>
+<form th:action="@{/member/join}" th:object="${memberForm}" method="post">
+    <div th:replace="~{domain/global/error/form_errors :: formErrorsFragment}"></div>
+    <div class="mb-3">
+        <label for="username" class="form-label">사용자ID</label>
+        <input type="text" th:field="*{username}" class="form-control border-2 border-gray-500 focus:outline-none focus:border-black-500 rounded-md">
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">비밀번호</label>
+        <input type="password" th:field="*{password}" class="form-control border-2 border-gray-500 focus:outline-none focus:border-black-500 rounded-md">
+    </div>
+    <div class="mb-3">
+        <label for="passwordConfirm" class="form-label">비밀번호 확인</label>
+        <input type="password" th:field="*{passwordConfirm}" class="form-control border-2 border-gray-500 focus:outline-none focus:border-black-500 rounded-md">
+    </div>
+    <button type="submit" class="btn btn-outline">회원가입</button>
+</form>
+</div>
+</html>

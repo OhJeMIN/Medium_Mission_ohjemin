@@ -1,0 +1,24 @@
+<html layout:decorate="~{domain/global/layout/layout}">
+
+<div layout:fragment="content" class="p-2">
+    <div class="my-3 border-bottom">
+        <h1 class="font-bold mb-2"><i class="fa-solid fa-right-to-bracket"></i> 로그인</h1>
+    </div>
+    <form th:action="@{/member/login}" method="post">
+        <div th:if="${param.error}">
+            <div class="alert alert-danger">
+                사용자ID 또는 비밀번호를 확인해 주세요.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="username" class="form-label">사용자ID</label>
+            <input type="text" name="username" id="username" class="form-control border-2 border-gray-500 focus:outline-none focus:border-black-500 rounded-md">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">비밀번호</label>
+            <input type="password" name="password" id="password" class="form-control border-2 border-gray-500 focus:outline-none focus:border-black-500 rounded-md">
+        </div>
+        <button type="submit" class="btn btn-outline">로그인</button>
+    </form>
+</div>
+</html>

@@ -1,0 +1,22 @@
+<html layout:decorate="~{domain/global/layout/layout}">
+
+<div layout:fragment="content" class="p-2">
+    <h1 class="font-bold text-center mb-2"><i class="fa-solid fa-pen"></i> 게시물 작성</h1>
+    <form th:object="${postForm}" method="post" class="mt-5">
+        <div th:replace="~{domain/global/error/form_errors :: formErrorsFragment}"></div>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <div class="mb-3">
+            <label for="title" class="form-label">제목</label>
+            <input type="text" th:field="*{title}" name="title" id="title" class="form-control border-2 border-gray-500 focus:outline-none focus:border-black-500 rounded-md">
+        </div>
+        <div class="mb-3">
+            <label for="body" class="form-label">내용</label>
+            <textarea name="body" th:field="*{body}" id="body" rows="15" class="border-2 border-gray-500 focus:outline-none focus:border-black-500 rounded-md"></textarea>
+        </div>
+        <label for="isPublished" class="form-label">Published</label>
+        <input type="checkbox" th:field="*{published}" id="isPublished" name="isPublished" value="true">
+        <br>
+        <input type="submit" class="mt-5 btn btn-outline" value="저장하기">
+    </form>
+</div>
+</html>
