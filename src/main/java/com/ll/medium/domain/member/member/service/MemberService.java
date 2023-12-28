@@ -24,7 +24,7 @@ public class MemberService {
         return user;
     }
     public Member getMember(String username) {
-        Optional<Member> member = this.memberRepository.findByusername(username);
+        Optional<Member> member = this.memberRepository.findByUsername(username);
         if (member.isPresent()) {
             return member.get();
         } else {
