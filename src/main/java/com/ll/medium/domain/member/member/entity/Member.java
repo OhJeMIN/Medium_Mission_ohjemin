@@ -15,4 +15,6 @@ public class Member extends BaseEntity {
 
     private String password;
 
+    @Column(name = "PAID", nullable = false, columnDefinition = "boolean default false")
+    private boolean paid;
 }
