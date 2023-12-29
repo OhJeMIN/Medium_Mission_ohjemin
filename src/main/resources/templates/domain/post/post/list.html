@@ -16,9 +16,9 @@
             <td class="text-start">
                 <a th:href="@{|/post/${post.id}|}" th:text="${post.title}"></a>
                 <span class="text-red-500 small ms-2"
-                      th:if="${#lists.size(post.commentList) > 0}"
-                      th:text="${#lists.size(post.commentList)}">
-                    </span>
+                  th:if="${#lists.size(post.commentList) > 0}"
+                  th:text="${#lists.size(post.commentList)}">
+                </span>
             </td>
             <td><a th:if="${post.member != null}" th:href="@{'/b/' + ${post.member.username}}" th:text="${post.member.username}"></a></td>
             <td th:text="${post.createDate}"></td>
