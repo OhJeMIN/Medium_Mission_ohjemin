@@ -43,9 +43,11 @@ public class PostController {
     }
 
     @GetMapping(value = "/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id, CommentForm commentForm) {
+    public String detail(Model model, @PathVariable("id") Integer id, CommentForm commentForm, Principal principal) {
         Post post = postService.getPost(id);
         model.addAttribute("post", post);
+        Member member = memberService.getMember(principal.getName());
+        model.addAttribute("paid", member.isPaid());
         return "domain/post/post/detail";
     }
     @PreAuthorize("isAuthenticated()")
