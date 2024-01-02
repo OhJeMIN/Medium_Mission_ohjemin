@@ -8,6 +8,7 @@ import com.ll.medium.domain.post.post.form.PostForm;
 import com.ll.medium.domain.post.post.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,18 +19,32 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/post")
 @RequiredArgsConstructor
+@Slf4j
 public class PostController {
     private final PostService postService;
     private final MemberService memberService;
 
     @GetMapping("/list") // 공개된 전체 글 리스트
-    public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
+    public String list(Model model,
+                       @RequestParam(defaultValue = "0") int page,
+                       @RequestParam(value = "kwType", defaultValue = "") List<String> kwTypes) {
         Page<Post> paging = postService.getListIsPublished(page);
+
         model.addAttribute("paging", paging);
+        Map<String, Boolean> kwTypesMap = kwTypes
+                .stream()
+                .collect(Collectors.toMap(
+                        kwType -> kwType,
+                        kwType -> true
+                ));
+        model.addAttribute("kwTypesMap", kwTypesMap);
         return "domain/post/post/list";
     }
 
