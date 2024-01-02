@@ -27,16 +27,16 @@ public class PostController {
     private final MemberService memberService;
 
     @GetMapping("/list") // 공개된 전체 글 리스트
-    public String list(Model model, @RequestParam(value = "page", defaultValue = "0")int page){
+    public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
         Page<Post> paging = postService.getListIsPublished(page);
         model.addAttribute("paging", paging);
         return "domain/post/post/list";
     }
 
     @GetMapping("/myList") // 내 글 리스트
-    public String myList(Model model, @RequestParam(value = "page", defaultValue = "0")int page ,Principal principal){
+    public String myList(Model model, @RequestParam(value = "page", defaultValue = "0") int page, Principal principal) {
         Member member = memberService.getMember(principal.getName());
-        Page<Post> paging = postService.getListByMemberId(page,member.getId());
+        Page<Post> paging = postService.getListByMemberId(page, member.getId());
         model.addAttribute("paging", paging);
         model.addAttribute("myPage", true);
         return "domain/post/post/list";
@@ -46,10 +46,15 @@ public class PostController {
     public String detail(Model model, @PathVariable("id") Integer id, CommentForm commentForm, Principal principal) {
         Post post = postService.getPost(id);
         model.addAttribute("post", post);
-        Member member = memberService.getMember(principal.getName());
-        model.addAttribute("paid", member.isPaid());
+        if (principal != null) {
+            Member member = memberService.getMember(principal.getName());
+            model.addAttribute("paid", member.isPaid());
+        } else {
+            model.addAttribute("paid", false);
+        }
         return "domain/post/post/detail";
     }
+
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/write")
     public String getWrite(PostForm postForm) {
@@ -58,20 +63,20 @@ public class PostController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/write")
-    public String postWrite(@Valid PostForm postForm, BindingResult bindingResult , Principal principal) {
-        if(bindingResult.hasErrors()){
+    public String postWrite(@Valid PostForm postForm, BindingResult bindingResult, Principal principal) {
+        if (bindingResult.hasErrors()) {
             return "domain/post/post/write";
         }
         Member member = memberService.getMember(principal.getName());
-        postService.write(postForm.getTitle(),postForm.getBody(), postForm.isPublished(),member);
+        postService.write(postForm.getTitle(), postForm.getBody(), postForm.isPublished(), member);
         return "redirect:/post/list";
     }
 
     @PreAuthorize("isAuthenticated()")
-    @GetMapping ("/modify/{id}")
-    public String postModify(PostForm postForm , @PathVariable("id")Integer id, Principal principal){
+    @GetMapping("/modify/{id}")
+    public String postModify(PostForm postForm, @PathVariable("id") Integer id, Principal principal) {
         Post post = postService.getPost(id);
-        if(!post.getMember().getUsername().equals(principal.getName())){
+        if (!post.getMember().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다");
         }
         postForm.setTitle(post.getTitle());
@@ -98,7 +103,7 @@ public class PostController {
 
     @PreAuthorize("isAuthenticated()")
     @DeleteMapping("/delete/{id}")
-    public String postDelete(Principal principal, @PathVariable("id") Integer id){
+    public String postDelete(Principal principal, @PathVariable("id") Integer id) {
         Post post = postService.getPost(id);
         if (!post.getMember().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제권한이 없습니다.");
