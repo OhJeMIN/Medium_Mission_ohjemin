@@ -3,8 +3,16 @@
 
 
 <div layout:fragment="content" class="overflow-x-auto" >
-    <form>
+    <form method="get" action="/post/list">
         <div style="display:flex; gap:10px;">
+            <select name="sort" id="sort" class="form-control input input-bordered input-sm mr-3">
+                <option value="desc" th:selected="${sort == 'desc'}">최신 순</option>
+                <option value="asc" th:selected="${sort == 'asc'}">오래된 순</option>
+                <option value="postLikeDesc" th:selected="${sort == 'voteCountDesc'}">추천 많은 순</option>
+                <option value="postLikeAsc" th:selected="${sort == 'voteCountAsc'}">추천 낮은 순</option>
+                <option value="viewCountDesc" th:selected="${sort == 'viewCountDesc'}">조회수 높은 순</option>
+                <option value="viewCountAsc" th:selected="${sort == 'viewCountAsc'}">조회수 낮은 순</option>
+            </select>
             <label><input type="checkbox" name="kwType" value="authorUsername" th:checked="${kwTypesMap['authorUsername']}"><span>작성자</span></label>
             <label><input type="checkbox" name="kwType" value="title" th:checked="${kwTypesMap['title']}"><span>제목</span></label>
             <label><input type="checkbox" name="kwType" value="body" th:checked="${kwTypesMap['body']}"><span>내용</span></label>
@@ -23,7 +31,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="hover text-center" th:each="post : ${paging}" th:if="${post.isPublished || myPage}">
+        <tr class="hover text-center" th:each="post : ${paging}">
             <td th:text="${post.id}"></td>
             <td class="text-start">
                 <a th:href="@{|/post/${post.id}|}" th:text="${post.title}"></a>

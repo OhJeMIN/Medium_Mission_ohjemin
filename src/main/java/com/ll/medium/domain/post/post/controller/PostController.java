@@ -35,8 +35,15 @@ public class PostController {
     public String list(Model model,
                        @RequestParam(defaultValue = "0") int page,
                        @RequestParam(value = "kwType", defaultValue = "") List<String> kwTypes,
-                       @RequestParam(defaultValue = "") String kw) {
-        Page<Post> paging = postService.getListIsPublished(kwTypes, kw ,page);
+                       @RequestParam(defaultValue = "") String kw,
+                       @RequestParam(defaultValue = "desc") String sort) {
+
+        Page<Post> paging;
+        if (kwTypes != null && !kwTypes.isEmpty() && kw != null) {
+            paging = this.postService.search(kwTypes, kw, sort, page);
+        } else {
+            paging = this.postService.getListIsPublished(page);
+        }
         Map<String, Boolean> kwTypesMap = kwTypes
                 .stream()
                 .collect(Collectors.toMap(
@@ -45,6 +52,7 @@ public class PostController {
                 ));
         model.addAttribute("paging", paging);
         model.addAttribute("kwTypesMap", kwTypesMap);
+        model.addAttribute("sort", sort);
         return "domain/post/post/list";
     }
 

@@ -38,8 +38,8 @@ public class PostService {
         }
     }
 
-    public void write(String title, String body, boolean isPublished , Member member) {
-        Post post= new Post();
+    public void write(String title, String body, boolean isPublished, Member member) {
+        Post post = new Post();
         post.setTitle(title);
         post.setBody(body);
         post.setCreateDate(LocalDateTime.now());
@@ -48,7 +48,7 @@ public class PostService {
         this.postRepository.save(post);
     }
 
-    public Page<Post> getList(int page){
+    public Page<Post> getList(int page) {
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(0, 30, Sort.by(sorts));
@@ -60,21 +60,21 @@ public class PostService {
         return postRepository.findAllByOrderByCreateDateDesc(pageable);
     }
 
-    public Page<Post> getListByMemberId(int page, Long id){
+    public Page<Post> getListByMemberId(int page, Long id) {
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page, 30, Sort.by(sorts));
         return postRepository.findByMemberId(pageable, id);
     }
 
-    public Page<Post> getListIsPublished(List<String> kwTypes, String kw, int page){
+    public Page<Post> getListIsPublished(int page) {
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page, 30, Sort.by(sorts));
         return postRepository.findByIsPublishedTrue(pageable);
     }
 
-    public void modify(Post post, String title, String body , Boolean ispublished) {
+    public void modify(Post post, String title, String body, Boolean ispublished) {
         post.setTitle(title);
         post.setBody(body);
         post.setModifyDate(LocalDateTime.now());
@@ -94,6 +94,13 @@ public class PostService {
     public void cacelLike(Post post, Member member) {
         post.removeLikeById(member.getId());
         postRepository.save(post);
+    }
+
+    public Page<Post> search(List<String> kwTypes, String kw, String sort, int page) {
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createDate"));
+        Pageable pageable = PageRequest.of(page, 30, Sort.by(sorts));
+        return postRepository.search(kwTypes, kw , sort, pageable);
     }
 }
 
