@@ -34,16 +34,16 @@ public class PostController {
     @GetMapping("/list") // 공개된 전체 글 리스트
     public String list(Model model,
                        @RequestParam(defaultValue = "0") int page,
-                       @RequestParam(value = "kwType", defaultValue = "") List<String> kwTypes) {
-        Page<Post> paging = postService.getListIsPublished(page);
-
-        model.addAttribute("paging", paging);
+                       @RequestParam(value = "kwType", defaultValue = "") List<String> kwTypes,
+                       @RequestParam(defaultValue = "") String kw) {
+        Page<Post> paging = postService.getListIsPublished(kwTypes, kw ,page);
         Map<String, Boolean> kwTypesMap = kwTypes
                 .stream()
                 .collect(Collectors.toMap(
                         kwType -> kwType,
                         kwType -> true
                 ));
+        model.addAttribute("paging", paging);
         model.addAttribute("kwTypesMap", kwTypesMap);
         return "domain/post/post/list";
     }

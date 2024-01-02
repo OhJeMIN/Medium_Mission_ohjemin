@@ -11,4 +11,10 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 
     Page<Post> findByMemberId(Pageable pageable, Long id);
     Page<Post> findAllByOrderByCreateDateDesc(Pageable pageable);
+
+    Page<Post> findByTitleContainingOrBodyContaining(String kw, String kw_, Pageable pageable);
+
+    Page<Post> findByTitleContaining(String kw, Pageable pageable);
+
+    Page<Post> findByBodyContaining(String kw, Pageable pageable);
 }
