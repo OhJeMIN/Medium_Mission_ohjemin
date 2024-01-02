@@ -3,7 +3,7 @@
 
 
 <div layout:fragment="content" class="overflow-x-auto" >
-    <form method="get" action="/post/list">
+    <form method="get" action="/post/list" th:unless="${myPage}">
         <div style="display:flex; gap:10px;">
             <select name="sort" id="sort" class="form-control input input-bordered input-sm mr-3">
                 <option value="desc" th:selected="${sort == 'desc'}">최신 순</option>
@@ -31,7 +31,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="hover text-center" th:each="post : ${paging}">
+        <tr class="hover text-center" th:each="post : ${paging}" th:if="${post.isPublished || myPage}">
             <td th:text="${post.id}"></td>
             <td class="text-start">
                 <a th:href="@{|/post/${post.id}|}" th:text="${post.title}"></a>

@@ -53,6 +53,7 @@ public class PostController {
         model.addAttribute("paging", paging);
         model.addAttribute("kwTypesMap", kwTypesMap);
         model.addAttribute("sort", sort);
+        model.addAttribute("myPage", false);
         return "domain/post/post/list";
     }
 
