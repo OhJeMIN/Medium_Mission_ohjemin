@@ -71,16 +71,6 @@ public class PostService {
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page, 30, Sort.by(sorts));
-
-        if (kwTypes.contains("title") && kwTypes.contains("body") && kwTypes.contains("")) {
-            return postRepository.findByTitleContainingOrBodyContaining(kw, kw, pageable);
-        } else if (kwTypes.contains("title")) {
-            return postRepository.findByTitleContaining(kw, pageable);
-        } else if (kwTypes.contains("body")) {
-            return postRepository.findByBodyContaining(kw, pageable);
-        }
-
-
         return postRepository.findByIsPublishedTrue(pageable);
     }
 
