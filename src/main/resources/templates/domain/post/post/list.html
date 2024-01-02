@@ -1,6 +1,21 @@
 <html layout:decorate="~{domain/global/layout/layout}">
 
+
+
 <div layout:fragment="content" class="overflow-x-auto" >
+    <form>
+        <div style="display:flex; gap:10px;">
+            <label><input type="checkbox" name="kwType" value="authorUsername"><span>작성자</span></label>
+            <label><input type="checkbox" name="kwType" value="title" checked><span>제목</span></label>
+            <label><input type="checkbox" name="kwType" value="body" checked><span>내용</span></label>
+            <label><input type="checkbox" name="kwType" value="tagContent"><span>태그</span></label>
+            <label><input type="checkbox" name="kwType" value="commentAuthorUsername"><span>댓글 작성자</span></label>
+            <label><input type="checkbox" name="kwType" value="commentBody"><span>댓글 내용</span></label>
+        </div>
+        <input type="search" name="kw" placeholder="검색어">
+        <input type="submit" value="검색">
+    </form>
+
     <table class="table">
         <thead>
         <tr class="text-center">
@@ -38,7 +53,7 @@
                 th:if="${page >= paging.number-5 and page <= paging.number+5}"
                 th:classappend="${page == paging.number} ? 'active'"
                 class="page-item">
-                <button  th:text="${page}" class="join-item btn btn-outline" th:href="@{|?page=${page}|}"></button >
+                <a  th:text="${page}" class="join-item btn btn-outline" th:href="@{|?page=${page}|}"></a >
             </li>
             <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
                 <a class="page-link" th:href="@{|?page=${paging.number+1}|}">
