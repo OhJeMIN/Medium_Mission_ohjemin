@@ -26,6 +26,12 @@ public class SecurityConfig {
         http
                 .authorizeRequests(authorizeRequest -> // 인증 요청에 대한 설정을 합니다.
                         authorizeRequest
+                                .requestMatchers("/gen/**")
+                                .permitAll()
+                                .requestMatchers("/resource/**")
+                                .permitAll()
+                                .requestMatchers("/h2-console/**")
+                                .permitAll()
                                 .requestMatchers("/adm/**")
                                 .hasRole("ADMIN")
                                 .requestMatchers("/**") // 모든 요청을 대상으로 합니다.
