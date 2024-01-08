@@ -3,10 +3,14 @@ spring:
     ansi:
       enabled: always
   datasource:
+    driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:medium_test;MODE=MYSQL
+    username: sa
+    password:
   jpa:
     hibernate:
       ddl-auto: create
+    show-sql: false
 custom:
   tempDirPath: c:/temp/medium_test/temp
   genFile:
