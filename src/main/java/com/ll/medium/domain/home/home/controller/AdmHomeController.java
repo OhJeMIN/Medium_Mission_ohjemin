@@ -3,7 +3,6 @@ package com.ll.medium.domain.home.home.controller;
 import com.ll.medium.domain.member.member.service.MemberService;
 import com.ll.medium.domain.post.post.service.PostService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,5 +17,9 @@ public class AdmHomeController {
 
     public String showMain(){
         return "domain/home/home/adm/main";
+    }
+
+    public String showAbout(){
+        return "domain/home/home/adm/about";
     }
 }
