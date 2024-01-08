@@ -23,12 +23,27 @@ public class MemberService {
         memberRepository.save(user);
         return user;
     }
+
+    public Member joinPaid(String username, String password, boolean paid) {
+        Member user = new Member();
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.encode(password));
+        user.setPaid(paid);
+        memberRepository.save(user);
+        return user;
+    }
+
+
     public Member getMember(String username) {
-        Optional<Member> member = this.memberRepository.findByusername(username);
+        Optional<Member> member = this.memberRepository.findByUsername(username);
         if (member.isPresent()) {
             return member.get();
         } else {
             throw new DataNotFoundException("member not found");
         }
+    }
+
+    public Optional<Member> findByUsername(String username) {
+        return memberRepository.findByUsername(username);
     }
 }

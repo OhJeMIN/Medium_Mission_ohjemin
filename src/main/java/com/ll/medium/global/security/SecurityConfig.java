@@ -12,6 +12,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
 @Configuration // 이 클래스는 스프링 설정 클래스임을 나타냅니다.
 @EnableWebSecurity //자동으로 기본 로그인 페이지와 로그아웃 기능을 제공
 @EnableMethodSecurity(prePostEnabled = true) //로그인 여부를 판별
@@ -22,7 +25,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorizeRequest -> // 인증 요청에 대한 설정을 합니다.
-                        authorizeRequest.requestMatchers("/**") // 모든 요청을 대상으로 합니다.
+                        authorizeRequest
+                                .requestMatchers("/**") // 모든 요청을 대상으로 합니다.
                                 .permitAll() // 모든 요청을 허용합니다.
                 )
                 .headers(
@@ -35,7 +39,9 @@ public class SecurityConfig {
 
                 .formLogin((formLogin) -> formLogin //스프링 시큐리티의 로그인 설정을 담당하는 부분
                         .loginPage("/member/login")// URL
-                        .defaultSuccessUrl("/post/list") //로그인 성공시에 이동하는 디폴트 페이지
+                        .loginProcessingUrl("/member/login")
+                        .defaultSuccessUrl("/post/list?msg=" + URLEncoder.encode("환영합니다.", StandardCharsets.UTF_8))
+                        .failureUrl("/member/login?failMsg=" + URLEncoder.encode("아이디 또는 비밀번호가 틀렸습니다.", StandardCharsets.UTF_8))
                 )
                 .logout((logout) -> logout //로그아웃을 위한 설정
                         .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout")) //로그아웃 URL

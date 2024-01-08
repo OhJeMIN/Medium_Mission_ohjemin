@@ -29,7 +29,7 @@ public class Post extends BaseEntity {
     @OneToMany(mappedBy = "post" , cascade = CascadeType.REMOVE)
     private List<Comment> commentList;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
     @Column(nullable = true)
