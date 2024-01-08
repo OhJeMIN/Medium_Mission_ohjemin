@@ -52,6 +52,10 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/post/list?msg=" + URLEncoder.encode("환영합니다.", StandardCharsets.UTF_8))
                         .failureUrl("/member/login?failMsg=" + URLEncoder.encode("아이디 또는 비밀번호가 틀렸습니다.", StandardCharsets.UTF_8))
                 )
+                .oauth2Login(
+                        oauth2Login -> oauth2Login
+                                .loginPage("/member/login")
+                )
                 .logout((logout) -> logout //로그아웃을 위한 설정
                         .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout")) //로그아웃 URL
                         .logoutSuccessUrl("/") //로그아웃 성공시에 이동하는 디폴트 페이지

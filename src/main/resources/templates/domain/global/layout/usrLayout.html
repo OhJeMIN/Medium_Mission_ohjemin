@@ -5,6 +5,13 @@
     <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE" th:text="${@appConfig.siteName}"></title>
 </head>
 <body>
+<header layout:fragemnt="header">
+<span sec:authorize="isAuthenticated()">
+        [[${@rq.member.username}]] / [[${@rq.member.membershipLevel}]]
+        <img style="width:50px;" th:src="${@rq.profileImgUrl}">
+    </span>
+
+</header>
 </body>
 
 </html>

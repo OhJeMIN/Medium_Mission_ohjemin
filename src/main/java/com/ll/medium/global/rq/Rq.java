@@ -1,7 +1,9 @@
 package com.ll.medium.global.rq;
 
 import com.ll.medium.domain.member.member.entity.Member;
+import com.ll.medium.domain.member.member.service.MemberService;
 import com.ll.medium.global.rsData.RsData;
+import com.ll.medium.standard.util.Ut.Ut;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,7 @@ import java.util.Optional;
 @RequestScope
 @RequiredArgsConstructor
 public class Rq {
+    private final MemberService memberService;
     private final HttpServletRequest request;
     private final HttpServletResponse response;
 
@@ -67,5 +70,40 @@ public class Rq {
                 .getAuthorities()
                 .stream()
                 .anyMatch(it -> it.getAuthority().equals("ROLE_ADMIN"));
+    }
+
+    public void setAttribute(String key, Object value) {
+        request.setAttribute(key, value);
+    }
+
+    public String getCurrentQueryStringWithoutParam(String paramName) {
+        String queryString = request.getQueryString();
+
+        if (queryString == null) {
+            return "";
+        }
+
+        queryString = Ut.url.deleteQueryParam(queryString, paramName);
+
+        return queryString;
+    }
+
+    public String getEncodedCurrentUrl() {
+        return Ut.url.encode(getCurrentUrl());
+    }
+
+    private String getCurrentUrl() {
+        String url = request.getRequestURI();
+        String queryString = request.getQueryString();
+
+        if (queryString != null) {
+            url += "?" + queryString;
+        }
+
+        return url;
+    }
+
+    public String getProfileImgUrl() {
+        return memberService.getProfileImgUrl(getMember());
     }
 }

@@ -57,6 +57,9 @@
     </div>
 </div>
 
+<th:block layout:fragment="header"></th:block>
+<th:block layout:fragment="content"></th:block>
+
 <script>
     const queryParams = getQueryParams();
 
@@ -65,7 +68,7 @@
     }
 </script>
 
-<th:block layout:fragment="content"></th:block>
+
 
 <script layout:fragment="script" type='text/javascript'>
     const delete_elements = document.getElementsByClassName("delete");
