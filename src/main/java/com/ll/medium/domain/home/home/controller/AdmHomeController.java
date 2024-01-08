@@ -15,7 +15,7 @@ public class AdmHomeController {
     private final PostService postService;
     private final MemberService memberService;
     @GetMapping("") // 공개된 전체 글 리스트
-    @PreAuthorize("hasRole('ADMIN')")
+
     public String showMain(){
         return "domain/home/home/adm/main";
     }

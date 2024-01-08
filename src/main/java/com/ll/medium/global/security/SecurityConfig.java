@@ -26,8 +26,11 @@ public class SecurityConfig {
         http
                 .authorizeRequests(authorizeRequest -> // 인증 요청에 대한 설정을 합니다.
                         authorizeRequest
+                                .requestMatchers("/adm/**")
+                                .hasRole("ADMIN")
                                 .requestMatchers("/**") // 모든 요청을 대상으로 합니다.
                                 .permitAll() // 모든 요청을 허용합니다.
+
                 )
                 .headers(
                         headers -> // response headers에 대한 설정을 합니다.
