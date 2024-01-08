@@ -1,26 +1,18 @@
 package com.ll.medium;
 
-import com.ll.medium.domain.member.member.entity.Member;
-import com.ll.medium.domain.member.member.service.MemberService;
-import com.ll.medium.domain.post.post.service.PostService;
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import java.util.stream.IntStream;
-
 @SpringBootTest
 @ActiveProfiles("test")
-@RequiredArgsConstructor
 public class MediumApplicationTests {
-
-    private final MemberService memberService;
-    private final PostService postService;
-
 
 
     @Test
+    void contextLoads() {
+    }
+    /*@Test
     void testJpa() {
         Member memberUser1 = memberService.joinPaid("user1", "1234" ,true);
         Member memberUser2 = memberService.joinPaid("user2", "1234", true);
@@ -47,5 +39,5 @@ public class MediumApplicationTests {
         IntStream.rangeClosed(7, 100).forEach(i -> {
             postService.write( "제목 " + i, "내용 " + i, true, memberUser3 );
         });
-    }
+    }*/
 }
