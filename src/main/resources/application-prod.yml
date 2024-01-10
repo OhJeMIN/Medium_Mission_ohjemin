@@ -23,6 +23,6 @@ logging:
 custom:
   tempDirPath: /gen/temp
   site:
-    baseUrl: "https://last-medium.oa.gg"
+    baseUrl: "https://last-medium.kkan.site"
   genFile:
     dirPath: /gen
